@@ -1,0 +1,81 @@
+students = {"Joe":10,
+        "Tom":23,
+        "Barb":13,
+        "Sue":18,
+        "Sally":12
+}
+
+def show_menu():
+    print("\n======= student grade manager ======")
+    print("1. view all students")
+    print("2. add student")
+    print("3. edit student score")
+    print("4. delete student")
+    print("5. sort students by score")
+    print("6. calculate class average")
+    print("7. view individual student")
+    print("8. exit")
+
+show_menu() #shows the actual options that the code can operate
+
+while True: #creates a constant loop for checks until its told to stop 
+    choice = input("choose options (1-8): ") #this is your input for the choice   choice is just a place holder to make it easier to track
+
+    if choice == "menu":
+        show_menu()
+    
+    elif choice == "1":  #option 1 is a show of all students in the dictionary with scores
+        if not students:  #not checks the dictionary/list to see if there is any match
+            print("there is no students")
+        else: #it just prints a list of all the names and scores
+            print("\nAll student Scores:")
+            for name, score in students.items():
+                print(name,"-",score)
+    elif choice == "2":  #capitalize i asked ai to figure out a easy way to find a way to capitalize the first letter of a word for input
+        name = input("Enter student name: ").capitalize()
+        if not name:
+            print("name cannot be empty.")
+        elif name in students:
+            print("student already exists")
+        else:
+            score = float(input("Enter the test score: "))
+            students[name] =  score
+            print(name,"has been added.")
+    elif choice == "3":
+        name = input("Enter the student's name to edit: ").capitalize()
+
+        if name in students:
+            score = float(input("enter new score: "))
+            students[name] = score
+            print(name,"'s score has been updated.")
+        else:
+            print("student not found.")
+    elif choice == "4":
+        name = input("Enter the student's name: ").capitalize()
+        if name in students:
+            del students[name]
+            print(name,"has been deleted.")
+        else:
+            print("student not found.")
+    elif choice == "5":
+        if not students:
+            print("there are no students to sort")
+        else:
+            print("\nStudents sorted by score:")
+            for name in sorted(students):
+                print(name,"-",students[name])
+    elif choice == "6": #does the math to do the average
+        if not students:
+            print("cannot calculate a average score.")
+        else:
+            average = sum(students.values()) / len(students)
+            print("Class average:", round(average, 2))
+    elif choice == "7": #gives individual student info
+        name = input("Enter desired student info: ").capitalize()
+        if name in students:
+            print(name,"-",students[name])
+        else:
+            print("Student not found.")
+    elif choice == "8":  #end the program
+        print("goodbye!")
+        break

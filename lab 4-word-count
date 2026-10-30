@@ -1,0 +1,16 @@
+
+sentence = list(input("Enter a sentence: "))
+list1 = []
+word = ""
+
+if sentence[-1] != " ":
+    sentence.append(" ")
+for character in sentence:
+    if character != " ":
+        word += character
+    else:
+        list1.append(word)
+        word = ""
+
+
+print("word count:", len(list1))
